@@ -79,6 +79,10 @@ body {
 }
 
 section {
+    /* overflow-y: scroll;
+scroll-snap-type: y mandatory; */
+
+/* My additions Above */
   min-height: 100vh;
   padding: 10rem 9% 2rem;
 }
@@ -266,6 +270,9 @@ section {
 }
 
 .about {
+
+
+    /* My Additions Above */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -342,10 +349,10 @@ span {
 }
 
 .education {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
   min-height: 105vh;
   padding-bottom: 5rem;
 }
@@ -433,21 +440,22 @@ span {
 }
 
 .skills {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
     /* My additions above */
   min-height: 105vh;
   padding-bottom: 5rem;
   background: var(--second-bg-color);
 }
 
-.skills h2 {
+/* .skills h2 {
     display: inline-block;
-    /* left: 50%;
-    transform: translate(-100%); */
-}
+    left: 50%;
+    transform: translate(-100%); 
+}*/
+
 
 .skills .skills-row {
   display: flex;
