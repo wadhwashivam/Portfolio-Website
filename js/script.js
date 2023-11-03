@@ -51,3 +51,22 @@ window.onscroll = () => {
 
     footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
 }
+//Read More button about section
+
+function toggleIntro() {
+    var intro = document.querySelector('.intro');
+    var extendedIntro = document.querySelector('.extended-intro');
+    var readMoreLink = document.getElementById('read-more-link');
+  
+    if (extendedIntro.style.display === 'none') {
+      extendedIntro.style.display = 'block';
+      intro.style.display = 'none';
+      readMoreLink.innerHTML = 'Read Less'; // Update the text to "Read Less"
+    } else {
+      extendedIntro.style.display = 'none';
+      intro.style.display = 'block';
+      readMoreLink.innerHTML = 'Read More'; // Update the text to "Read More"
+    }
+  }
+    
+  
