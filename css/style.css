@@ -341,6 +341,9 @@ span {
 .extended-intro {
   display: none;
 }
+.extended-intro a {
+  color: var(--main-color);
+}
 
 .btn-box.btns {
   display: inline-block;
