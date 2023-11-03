@@ -91,7 +91,7 @@ scroll-snap-type: y mandatory; */
   display: flex;
   align-items: center;
   padding: 0 9%;
-  background: url(/images/Untitled\ Artwork.png) no-repeat;
+  background: url(images/Untitled Artwork.png) no-repeat;
   background-size: cover;
   background-position: center;
 }
