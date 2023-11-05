@@ -61,10 +61,6 @@ Feel free to customize this website to match your style and preferences. You can
 
 - This website is a single-page application, and all sections are on the same page. There are no additional pages.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Author
 
 - [Shivam Wadhwa](https://github.com/wadhwashivam)
