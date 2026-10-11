@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #ededed;
+  --color-soft: #f6f6f6;
+  --color-ink: #111111;
+  --color-mute: #6b6b6b;
+  --color-dim: #bdbdbd;
+  --color-line: #d4d4d4;
+  --color-accent: #b8431a;
+
+  --text-hello: clamp(6rem, 17vw, 15rem);
+  --text-hello--line-height: 0.85;
+
+  --tracking-tightest: -0.055em;
+  --tracking-label: 0.18em;
+
+  --container-page: 80rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply bg-paper text-ink antialiased motion-safe:scroll-smooth;
+  }
+  body {
+    @apply font-sans text-sm leading-relaxed;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-4 outline-accent;
+  }
+  ::selection {
+    @apply bg-ink text-white;
+  }
+}
