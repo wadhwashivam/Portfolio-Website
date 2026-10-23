@@ -16,7 +16,7 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {
+    {
     id: "agora",
     title: "Agora",
     summary:
@@ -30,6 +30,9 @@ export const projects: Project[] = [
       "Prisma",
       "Passport.js",
       "JWT",
+      "Vitest",
+      "Supertest",
+      "GitHub Actions",
       "Docker",
       "AWS (EC2, RDS)",
     ],
@@ -60,12 +63,18 @@ export const projects: Project[] = [
         alt: "The Agora sign-up page with the tagline 'A quieter place to think out loud'.",
         caption: "Sign-up.",
       },
+      {
+        src: "/projects/agora/ci.webp",
+        alt: "A GitHub pull request showing the backend and frontend CI checks passing.",
+        caption: "Every pull request runs the tests and builds the frontend. Nothing merges until both checks pass.",
+        wide: true,
+      },
     ],
     caseStudy: {
-      role: "Solo: frontend, backend, database and deployment",
+      role: "Solo: frontend, backend, database, testing and deployment",
       year: "Aug – Oct 2026",
       problem:
-        "Most social platforms are built around photos and video, and more and more of that is AI-generated. I wanted a place where people write and think instead, so Agora is text only, with a 500-word limit on posts and 100 on replies. It is also my proof that I can build a social platform from scratch: accounts, posts, replies, likes, follows, search and a real deployment.",
+        "Most social platforms are built around photos and video, and more and more of that is AI-generated. I wanted a place where people write and think instead, so Agora is text only, with a 500-word limit on posts and 100 on replies. It is also my proof that I can build a social platform from scratch: accounts, posts, replies, likes, follows, search, tests, CI and a real deployment.",
       decisions: [
         {
           title: "Text only, on purpose",
@@ -83,6 +92,21 @@ export const projects: Project[] = [
             "The data is relational (users, posts, comments, likes, follows), so Postgres fits better than a document store. Prisma handles queries and migrations, and Prisma Studio lets me inspect the data in a UI instead of the terminal.",
         },
         {
+          title: "Tests against a real database, not mocks",
+          detail:
+            "Most of the app's rules live in the database: one like per user per post, one follow per pair, cascading deletes. Mocking Prisma would skip all of that, so the 30 integration tests run with Vitest and Supertest against a throwaway Postgres. They cover auth, protected routes, who sees what in the feed, pagination limits and who can edit whose profile. Writing them turned up two validation bugs, which I fixed.",
+        },
+        {
+          title: "CI on every pull request",
+          detail:
+            "GitHub Actions starts a fresh Postgres, runs the migrations and the tests, and lints and builds the frontend. The main branch is protected, so a change can't merge until both checks pass.",
+        },
+        {
+          title: "Fixing 'works on my machine'",
+          detail:
+            "My lockfile installed fine on my Mac but failed on CI's Linux runner, because npm resolves some optional dependencies differently on each platform. I regenerated it inside a Linux Docker container, and now it installs the same everywhere.",
+        },
+        {
           title: "Docker for the whole stack",
           detail:
             "The backend, frontend and database run in containers with Docker Compose, so I don't install dependencies by hand and production runs the same way as my machine.",
@@ -93,9 +117,9 @@ export const projects: Project[] = [
             "I had deployed on Render and Neon before. This time I wanted to learn AWS, and keeping the app on EC2 and the database on RDS puts both in one ecosystem where they talk to each other easily. The images are built on the instance itself instead of through a registry.",
         },
         {
-          title: "Planned: chat and AI-assisted search",
+          title: "Planned: chat, AI-assisted search and automatic deploys",
           detail:
-            "Next I want direct messages between users and AI where it helps, search for example. There will be no option to generate posts with AI.",
+            "Next I want direct messages between users and AI where it helps, search for example. There will be no option to generate posts with AI. I also want merges to main to deploy to EC2 automatically instead of me pulling and rebuilding by hand.",
         },
       ],
     },
