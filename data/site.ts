@@ -47,7 +47,7 @@ export const stack = [
   { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Material UI", "HTML & CSS"] },
   { group: "Backend", items: ["Node.js", "Express", "REST APIs", "Passport.js", "JWT / sessions"] },
   { group: "Data", items: ["PostgreSQL", "MySQL", "SQLite", "Prisma"] },
-  { group: "Tooling", items: ["Git", "Docker", "AWS (EC2, RDS)", "Render", "Neon", "Vitest", "Supertest"] },
+  { group: "Tooling", items: ["Git", "Docker", "AWS (EC2, RDS)", "Render", "Neon", "Vitest", "Supertest", "GitHub Actions"] },
 ];
 
 export const cta = {
