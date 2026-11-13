@@ -33,7 +33,7 @@ export const proof = [
 
 export const about = {
   paragraph:
-    "I'm a full-stack developer. I like building things end to end, so I understand every layer, from the database to the deployed app. Agora, my biggest project, is text only on purpose: a place for people to think and write, not scroll. I built it solo and put it on AWS. I want to keep building products like that, and use AI where it actually helps, like search and finding related posts, not where it just generates more content. I studied computer science at UPEI and taught myself full-stack on top of that.",
+    "I'm a full-stack developer. I like building things end to end, so I understand every layer, from the database to the deployed app. Agora, my biggest project, is text only on purpose: a place for people to think and write, not scroll. I built it solo and put it on AWS. I want to keep building products like that, and use AI where it actually helps, like search and finding related posts, not where it just generates more content. Lately I've also been building retrieval systems for AI apps: a RAG pipeline from scratch, and a controlled test of which design choices actually help. I studied computer science at UPEI and taught myself full-stack on top of that.",
   facts: [
     { label: "Based in", value: "Ontario, Canada" },
     { label: "Open to", value: "Full-time: full-stack, software developer and software engineer roles" },
