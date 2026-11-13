@@ -126,6 +126,94 @@ export const projects: Project[] = [
   },
 
   {
+    id: "rag-evaluation",
+    title: "RAG Retrieval Study",
+    summary:
+      "A RAG system for questions about research papers, and a controlled test of which chunking and search choices actually help.",
+    stack: [
+      "Python",
+      "pgvector",
+      "PostgreSQL",
+      "sentence-transformers",
+      "BM25",
+      "NumPy",
+      "matplotlib",
+      "Ollama",
+      "Docker",
+    ],
+    live: "",
+    repo: "https://github.com/wadhwashivam/qasper-retrieval-eval",
+    cover: {
+      src: "/projects/rag-evaluation/cover.webp",
+      alt: "Two charts from the evaluation: retrieval gain for each configuration, and paired comparisons with confidence intervals.",
+    },
+    screenshots: [
+      {
+        src: "/projects/rag-evaluation/gain.webp",
+        alt: "Bar chart of gain over random for each chunker and retriever on the QASPER test set.",
+        caption:
+          "Gain over random for each setup on the held-out test set (1,308 questions). Paragraph chunking with plain dense retrieval came out on top.",
+        wide: true,
+      },
+      {
+        src: "/projects/rag-evaluation/significance.webp",
+        alt: "Forest plot of eight paired comparisons with 95% bootstrap intervals and a dashed line at zero.",
+        caption:
+          "Paired comparisons with 95% intervals. Anything crossing the dashed line isn't significant. The reranker is clearly worse, and hybrid search makes no difference.",
+        wide: true,
+      },
+    ],
+    caseStudy: {
+      role: "Solo: retrieval pipeline, evaluation design and analysis",
+      year: "Oct – Nov 2026",
+      problem:
+        "Most RAG tutorials pick a chunk size and a search method and move on. I wanted to know which of those choices actually matter. I built a RAG system from scratch for questions about NLP research papers (the QASPER dataset), then tested 4 ways of chunking and 4 ways of searching, 16 setups in total, on 2,196 questions with human-marked evidence. Splitting at paragraph boundaries helped in every comparison, hybrid search didn't beat plain embeddings, and a reranker made things worse at 18 times the cost.",
+      decisions: [
+        {
+          title: "No framework",
+          detail:
+            "I wrote the chunkers, the four ranking methods and the evaluation myself, in Python with Postgres and pgvector, so I can explain and change every part. A framework like LangChain would have hidden exactly the parts I was testing.",
+        },
+        {
+          title: "Chunk sizes in tokens, not words",
+          detail:
+            "My first chunker cut every 200 words. A check showed some chunks reached 655 tokens, past the embedding model's 512-token limit, so their endings were silently ignored. I switched to cutting by the model's own tokens, slicing the original text so casing and spacing stay intact.",
+        },
+        {
+          title: "An answer key built from character positions",
+          detail:
+            "Every chunk stores where it starts and ends in the paper. The human-marked evidence is located in the same text, so deciding whether a chunk is relevant is plain arithmetic on overlapping ranges. I checked the rule against a failure I had diagnosed by hand, and it agreed.",
+        },
+        {
+          title: "A fair way to compare chunk sizes",
+          detail:
+            "Smaller chunks make the top 5 cover less of the paper, so Hit@5 punishes them unfairly. I measured whether the evidence shows up within the first ~1,000 tokens of retrieved text instead, and subtracted a random baseline, because papers have so few chunks that guessing scores surprisingly well.",
+        },
+        {
+          title: "Predictions written down before the test set",
+          detail:
+            "I made every decision on the development split, then committed my expected results to Git before running the held-out test set once. One prediction failed: hybrid search looked better on dev but didn't hold up on test. I reported it anyway.",
+        },
+        {
+          title: "Checking which differences are real",
+          detail:
+            "A paired bootstrap test showed the reranker was significantly worse (p ≤ 0.002) and hybrid search made no difference. Paragraph chunking was better in every comparison, but only significant when combined with hybrid search.",
+        },
+        {
+          title: "Reading the failures",
+          detail:
+            "Only 3% of test questions failed in every setup. When I read 20 of them, about a third weren't retrieval failures at all: the system found a correct answer, but the annotators had marked a different passage. The main real failure was wording, like a question asking about a 'gold standard' when the paper says 'ground truth'.",
+        },
+        {
+          title: "Planned: an API and an agent",
+          detail:
+            "Next I'm putting the pipeline behind a FastAPI service with a small React front end, then extending it into an agent that can search and follow references across papers.",
+        },
+      ],
+    },
+  },
+
+  {
     id: "messaging-app",
     title: "Messaging App",
     summary:

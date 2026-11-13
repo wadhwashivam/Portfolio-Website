@@ -43,10 +43,11 @@ export const about = {
 
 // Only list what you can talk about in an interview.
 export const stack = [
-  { group: "Languages", items: ["Java", "JavaScript"] },
+  { group: "Languages", items: ["Java", "JavaScript", "Python"] },
   { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Material UI", "HTML & CSS"] },
   { group: "Backend", items: ["Node.js", "Express", "REST APIs", "Passport.js", "JWT / sessions"] },
-  { group: "Data", items: ["PostgreSQL", "MySQL", "SQLite", "Prisma"] },
+  { group: "Data", items: ["PostgreSQL", "pgvector", "MySQL", "SQLite", "Prisma"] },
+  { group: "AI / retrieval", items: ["RAG pipelines", "Embeddings (sentence-transformers)", "BM25 / hybrid search", "Retrieval evaluation", "Ollama", "NumPy"] },
   { group: "Tooling", items: ["Git", "Docker", "AWS (EC2, RDS)", "Render", "Neon", "Vitest", "Supertest", "GitHub Actions"] },
 ];
 
