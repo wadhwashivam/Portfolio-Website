@@ -134,6 +134,8 @@ export const projects: Project[] = [
       "Python",
       "pgvector",
       "PostgreSQL",
+      "FastAPI",
+      "React",
       "sentence-transformers",
       "BM25",
       "NumPy",
@@ -149,10 +151,9 @@ export const projects: Project[] = [
     },
     screenshots: [
       {
-        src: "/projects/rag-evaluation/gain.webp",
-        alt: "Bar chart of gain over random for each chunker and retriever on the QASPER test set.",
-        caption:
-          "Gain over random for each setup on the held-out test set (1,308 questions). Paragraph chunking with plain dense retrieval came out on top.",
+        src: "/projects/rag-evaluation/app.png",
+        alt: "The web app showing an answer with a citation linked to a highlighted passage.",
+        caption: "The web app. Each [n] in the answer links to its passage; cited passages are highlighted.",
         wide: true,
       },
       {
@@ -205,9 +206,14 @@ export const projects: Project[] = [
             "Only 3% of test questions failed in every setup. When I read 20 of them, about a third weren't retrieval failures at all: the system found a correct answer, but the annotators had marked a different passage. The main real failure was wording, like a question asking about a 'gold standard' when the paper says 'ground truth'.",
         },
         {
-          title: "Planned: an API and an agent",
+          title: "From evaluation to a working app",
           detail:
-            "Next I'm putting the pipeline behind a FastAPI service with a small React front end, then extending it into an agent that can search and follow references across papers.",
+            "The best configuration, paragraph chunks with dense retrieval, now runs behind a FastAPI service with a small React front end. You pick a paper, ask a question, and get an answer where each citation links to the passage it came from. The question my first version couldn't answer now gets a correct, cited answer.",
+        },
+        {
+          title: "Planned: an agent",
+          detail:
+            "Next I want to extend it into an agent that can search across papers and follow references, instead of answering from one paper at a time.",
         },
       ],
     },
